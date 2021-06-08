@@ -48,7 +48,6 @@ public class HeatMapView: UIView {
     public var tooltipPadding: CGFloat = 10
     public var tooltipTextColor: UIColor = .black
     public var tooltipItemsSpacing: CGFloat = 8
-    public var tootTipItemsUnit: String = ""
     public var tooltipTitleFont: UIFont = UIFont.systemFont(ofSize: 13)
     public var tooltipValueFont: UIFont = UIFont.systemFont(ofSize: 11)
     public var tooltipUnitFont: UIFont = UIFont.systemFont(ofSize: 10)

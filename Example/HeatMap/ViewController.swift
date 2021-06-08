@@ -236,13 +236,11 @@ class ViewController: UIViewController {
         let jsonData = jsonString.data(using: .utf8)!
         let result = try! JSONDecoder().decode(ResultRespons.self, from: jsonData)
         let sepratePercents: [CGFloat] = [0,70,80,90,100]
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
         let colors = [UIColor(red: 248/255, green: 207/255, blue: 117/255, alpha: 1),
                       UIColor(red: 243/255, green: 180/255, blue: 71/255, alpha: 1),
                       UIColor(red: 255/255, green: 165/255, blue: 0/255, alpha: 1),
                       UIColor(red: 255/255, green: 93/255, blue: 0/255, alpha: 1)]
-        let data = HeatMapModel(name: "Amir",
+        let data = HeatMapModel(name: "Demo",
                                 colors: colors,
                                 seprateGaugePercents: sepratePercents,
                                 data: result.result,
@@ -268,13 +266,7 @@ class ViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-//        heatMap.refreshUI()
-        heatMap.refreshHeatMapLayout()    
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-        } else {
-            print("Portrait")
-        }
+        heatMap.refreshHeatMapLayout()
     }
     
 }
