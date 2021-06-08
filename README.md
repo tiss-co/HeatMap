@@ -4,9 +4,7 @@
 [![License](https://img.shields.io/cocoapods/l/HeatMap.svg?style=flat)](https://cocoapods.org/pods/HeatMap)
 [![Platform](https://img.shields.io/cocoapods/p/HeatMap.svg?style=flat)](https://cocoapods.org/pods/HeatMap)
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+![HeatMapLogoWithTitle](https://user-images.githubusercontent.com/35375629/121260091-25e86880-c8c6-11eb-96c7-b33e9109c75e.jpg)
 
 
 # Requirements
@@ -22,6 +20,10 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'HeatMap'
 ```
+
+## Example
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ### Create an instance of HeatMap
 ```swift
@@ -57,6 +59,7 @@ let data = HeatMapModel(name: "Demo",
 heatmap.data = data
 heatmap.unitString: String = "MW"
 ```
+![Simulator Screen Shot - iPhone 11 - 2021-06-09 at 01 59 14](https://user-images.githubusercontent.com/35375629/121260290-60ea9c00-c8c6-11eb-90f1-d58f4861e261.png)
 
 ### Customize HeatMap
 
@@ -116,10 +119,6 @@ heatMap.segmentTextColor = .black
 heatMap.segmentBackgroundColor = .clear
 heatMap.gaugeLabelContainerRadius = 0
 ```
-
-## Licence
-Meter Gauge is available under the MIT license. See the [LICENSE.txt](https://github.com/boof-tech/MeterGauge/blob/main/LICENSE) file for more info.
-
 
 ## License
 
