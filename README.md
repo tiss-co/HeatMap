@@ -4,8 +4,10 @@
 [![License](https://img.shields.io/cocoapods/l/HeatMap.svg?style=flat)](https://cocoapods.org/pods/HeatMap)
 [![Platform](https://img.shields.io/cocoapods/p/HeatMap.svg?style=flat)](https://cocoapods.org/pods/HeatMap)
 
-![HeatMapLogoWithTitle](https://user-images.githubusercontent.com/35375629/121260091-25e86880-c8c6-11eb-96c7-b33e9109c75e.jpg)
-
+<p align="center" width="100%">
+    <img width="50%" src="https://user-images.githubusercontent.com/35375629/121260091-25e86880-c8c6-11eb-96c7-b33e9109c75e.jpg"> 
+    <img width="60%" src="https://user-images.githubusercontent.com/35375629/121261690-487b8100-c8c8-11eb-824a-3a18323184a6.png">
+</p>
 
 # Requirements
 - Xcode 11+
@@ -59,7 +61,7 @@ let data = HeatMapModel(name: "Demo",
 heatmap.data = data
 heatmap.unitString: String = "MW"
 ```
-![Simulator Screen Shot - iPhone 11 - 2021-06-09 at 01 59 14](https://user-images.githubusercontent.com/35375629/121260290-60ea9c00-c8c6-11eb-90f1-d58f4861e261.png)
+
 
 ### Customize HeatMap
 
