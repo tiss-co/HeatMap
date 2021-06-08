@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
 TODO: Add long description of the pod here.
                        DESC
-
+  s.swift_versions = '4.0'
   s.homepage         = 'https://github.com/boof-tech/HeatMap'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
