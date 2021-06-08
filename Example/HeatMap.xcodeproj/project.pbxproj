@@ -28,10 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		047C97D6B2EBC317BA6AF7C6 /* HeatMap.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = HeatMap.podspec; path = ../HeatMap.podspec; sourceTree = "<group>"; };
+		047C97D6B2EBC317BA6AF7C6 /* HeatMap.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HeatMap.podspec; path = ../HeatMap.podspec; sourceTree = "<group>"; };
 		328B9B885087C95C5595AAD5 /* Pods_HeatMap_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeatMap_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36CF4DB55D570E1FACF331DE /* Pods-HeatMap_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeatMap_Example.debug.xcconfig"; path = "Target Support Files/Pods-HeatMap_Example/Pods-HeatMap_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		4660FAE6FE93EB236E05C3D9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		4660FAE6FE93EB236E05C3D9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		4BE558946F833BB857E456D5 /* Pods-HeatMap_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeatMap_Example.release.xcconfig"; path = "Target Support Files/Pods-HeatMap_Example/Pods-HeatMap_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* HeatMap_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeatMap_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,7 +43,6 @@
 		607FACE51AFB9204008FA782 /* HeatMap_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeatMap_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		AD53549C0769053B5EAA92D1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C739ABC7199118F4C9B0EFF6 /* Pods-HeatMap_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeatMap_Tests.release.xcconfig"; path = "Target Support Files/Pods-HeatMap_Tests/Pods-HeatMap_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CB277B5CE3DFAD6F41FBF521 /* Pods-HeatMap_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeatMap_Tests.debug.xcconfig"; path = "Target Support Files/Pods-HeatMap_Tests/Pods-HeatMap_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D7DDB1B8D9A5122F4FA9FE14 /* Pods_HeatMap_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeatMap_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,7 +142,6 @@
 			children = (
 				047C97D6B2EBC317BA6AF7C6 /* HeatMap.podspec */,
 				4660FAE6FE93EB236E05C3D9 /* README.md */,
-				AD53549C0769053B5EAA92D1 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -156,7 +154,6 @@
 				CB277B5CE3DFAD6F41FBF521 /* Pods-HeatMap_Tests.debug.xcconfig */,
 				C739ABC7199118F4C9B0EFF6 /* Pods-HeatMap_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -190,7 +187,6 @@
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				2360E6A77D680397361EA0AC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,12 +210,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = Y5SH4GJWBN;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0900;
-						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
 			};
@@ -228,6 +224,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -279,24 +276,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HeatMap_Example/Pods-HeatMap_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2360E6A77D680397361EA0AC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HeatMap_Tests/Pods-HeatMap_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HeatMap_Tests/Pods-HeatMap_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3F66167DD11DEDCA1650B94A /* [CP] Check Pods Manifest.lock */ = {
@@ -497,6 +476,7 @@
 			baseConfigurationReference = 36CF4DB55D570E1FACF331DE /* Pods-HeatMap_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Y5SH4GJWBN;
 				INFOPLIST_FILE = HeatMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -512,6 +492,7 @@
 			baseConfigurationReference = 4BE558946F833BB857E456D5 /* Pods-HeatMap_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Y5SH4GJWBN;
 				INFOPLIST_FILE = HeatMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -540,7 +521,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeatMap_Example.app/HeatMap_Example";
 			};
 			name = Debug;
 		};
@@ -558,7 +538,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeatMap_Example.app/HeatMap_Example";
 			};
 			name = Release;
 		};

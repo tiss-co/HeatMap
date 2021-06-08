@@ -1,0 +1,16 @@
+PODS:
+  - HeatMap (1.0.0)
+
+DEPENDENCIES:
+  - HeatMap (from `../`)
+
+EXTERNAL SOURCES:
+  HeatMap:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  HeatMap: 2e8ad37ead50b3b7b7758a376a8c2ca91ea817f7
+
+PODFILE CHECKSUM: bda91ba85734cc4a6c86a45e93f55fa94fc39f0f
+
+COCOAPODS: 1.10.1

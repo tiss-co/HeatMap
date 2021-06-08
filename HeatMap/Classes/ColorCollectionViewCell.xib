@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ColorCollectionViewCell" customModule="HeatMap" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="155" height="143"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="155" height="143"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEc-I5-Vl3">
+                        <rect key="frame" x="1" y="0.0" width="153" height="143"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="HEc-I5-Vl3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7io-dM-QoV"/>
+                <constraint firstItem="HEc-I5-Vl3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="JRw-hp-2x5"/>
+                <constraint firstAttribute="bottom" secondItem="HEc-I5-Vl3" secondAttribute="bottom" id="MTh-w2-WAU"/>
+                <constraint firstAttribute="trailing" secondItem="HEc-I5-Vl3" secondAttribute="trailing" constant="1" id="PQc-u2-dBn"/>
+            </constraints>
+            <size key="customSize" width="155" height="143"/>
+            <connections>
+                <outlet property="containerView" destination="HEc-I5-Vl3" id="fSG-I5-nCb"/>
+            </connections>
+            <point key="canvasLocation" x="-15.217391304347828" y="94.754464285714278"/>
+        </collectionViewCell>
+    </objects>
+</document>
