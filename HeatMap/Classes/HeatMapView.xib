@@ -37,22 +37,6 @@
                         <constraint firstAttribute="height" constant="300" id="PmT-rY-4fB"/>
                     </constraints>
                 </tableView>
-                <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RDT-t3-tUF" userLabel="Tooltip View">
-                    <rect key="frame" x="264" y="22" width="140" height="106"/>
-                    <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ges-Qx-eX8">
-                            <rect key="frame" x="5" y="5" width="130" height="71.5"/>
-                        </stackView>
-                    </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="ges-Qx-eX8" secondAttribute="trailing" constant="5" id="Hgh-Fz-SWT"/>
-                        <constraint firstAttribute="bottom" secondItem="ges-Qx-eX8" secondAttribute="bottom" constant="5" id="IL0-ts-eCC"/>
-                        <constraint firstItem="ges-Qx-eX8" firstAttribute="top" secondItem="RDT-t3-tUF" secondAttribute="top" constant="5" id="Ti9-2l-l4M"/>
-                        <constraint firstAttribute="width" constant="140" id="hvL-tb-o1J"/>
-                        <constraint firstItem="ges-Qx-eX8" firstAttribute="leading" secondItem="RDT-t3-tUF" secondAttribute="leading" constant="5" id="u0N-YW-YjI"/>
-                    </constraints>
-                </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="m8c-Rn-7uG">
                     <rect key="frame" x="50" y="457" width="314" height="10"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -87,6 +71,22 @@
                     </constraints>
                     <imageReference key="image" image="up-triangular-arrow-H.png" symbolScale="large" renderingMode="original"/>
                 </imageView>
+                <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RDT-t3-tUF" userLabel="Tooltip View">
+                    <rect key="frame" x="264" y="22" width="140" height="106"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ges-Qx-eX8">
+                            <rect key="frame" x="5" y="5" width="130" height="71.5"/>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="ges-Qx-eX8" secondAttribute="trailing" constant="5" id="Hgh-Fz-SWT"/>
+                        <constraint firstAttribute="bottom" secondItem="ges-Qx-eX8" secondAttribute="bottom" constant="5" id="IL0-ts-eCC"/>
+                        <constraint firstItem="ges-Qx-eX8" firstAttribute="top" secondItem="RDT-t3-tUF" secondAttribute="top" constant="5" id="Ti9-2l-l4M"/>
+                        <constraint firstAttribute="width" constant="140" id="hvL-tb-o1J"/>
+                        <constraint firstItem="ges-Qx-eX8" firstAttribute="leading" secondItem="RDT-t3-tUF" secondAttribute="leading" constant="5" id="u0N-YW-YjI"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="d5e-qF-nJJ"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
