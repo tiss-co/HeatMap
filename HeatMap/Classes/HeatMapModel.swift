@@ -29,6 +29,11 @@ public struct HeatMapModel {
 public struct HeatMapDataModel: Codable {
     var date: String
     var values: [HeatMapValueModel]
+    public init(date: String,
+                values: [HeatMapValueModel]) {
+        self.date = date
+        self.values = values
+    }
 }
 
 public struct HeatMapValueModel:Codable {
