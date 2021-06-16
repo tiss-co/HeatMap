@@ -249,6 +249,8 @@ public class HeatMapView: UIView {
         tableView.reloadData()
         gaugeCollectionView.reloadData()
         labelCollectionView.reloadData()
+        tableView.beginUpdates()
+        tableView.endUpdates()
         calcuteHeightTableView()
     }
     
