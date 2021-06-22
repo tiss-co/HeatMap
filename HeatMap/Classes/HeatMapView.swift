@@ -575,7 +575,7 @@ extension HeatMapView {
         valueLbl.textColor = tooltipTextColor
         valueLbl.textAlignment = .right
         let value = selectedData.value
-        valueLbl.text = String(format: "%.2f",value)
+        valueLbl.text = Int(value).thousandSeprate()
         let unitLabel = UILabel()
         unitLabel.font = tooltipUnitFont
         unitLabel.textColor = tooltipTextColor
