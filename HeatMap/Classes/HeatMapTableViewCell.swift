@@ -25,7 +25,7 @@ class HeatMapTableViewCell: UITableViewCell {
     var heatMapData: HeatMapDataModel?
     var colors: [UIColor]?
     var seprateValues: [Double]?
-    var timesLableCounts: Int?
+    var timesLabels: [String]?
     var dateFormatString: String?
     var showDateFormatString: String?
     var indexItemSelected: Int? 
@@ -59,11 +59,11 @@ class HeatMapTableViewCell: UITableViewCell {
     func getData(data: HeatMapDataModel,
                  colors: [UIColor],
                  seprateValues: [Double],
-                 timesCount: Int){
+                 timesLabels: [String]){
         self.heatMapData = data
         self.colors = colors
         self.seprateValues = seprateValues
-        self.timesLableCounts = timesCount
+        self.timesLabels = timesLabels
         self.dateLabel.text = dateFormatter(dateString: data.date)
         collectionView.reloadData()
     }
@@ -110,21 +110,43 @@ class HeatMapTableViewCell: UITableViewCell {
 
 extension HeatMapTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return timesLableCounts ?? 0
+        return timesLabels?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let data = heatMapData?.values else { return UICollectionViewCell()}
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCollectionViewCell.nameOfClass, for: indexPath) as! ColorCollectionViewCell
-        guard let colors = colors, let seprateValues = seprateValues else { return cell }
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCollectionViewCell.nameOfClass, for: indexPath) as! ColorCollectionViewCell
+        guard let colors = colors,
+              let seprateValues = seprateValues,
+              let timeLabels = timesLabels else { return cell }
         let index = indexPath.item
-        if data.indices.contains(index) {
-            let value = data[indexPath.item]
-            cell.getData(colors: colors, values: seprateValues, currentValue: value.value)
-        } else {
-            cell.getData(color: .lightGray)
-        }
+        compareDataWithLabel(cell: &cell,
+                             index: index,
+                             data: data,
+                             colors: colors,
+                             seprateValues: seprateValues,
+                             timesLabels: timeLabels)
         return setupCellUI(cell: cell, index: index)
+    }
+    
+    func compareDataWithLabel(cell: inout ColorCollectionViewCell,
+                              index: Int,
+                              data: [HeatMapValueModel],
+                              colors: [UIColor],
+                              seprateValues: [Double],
+                              timesLabels: [String]) {
+        let label = timesLabels[index]
+        guard let value = findValueWithLabels(label: label, data: data) else {
+            cell.getData(color: .lightGray)
+            return
+        }
+        cell.getData(colors: colors, values: seprateValues, data: value)
+    }
+    
+    func findValueWithLabels(label: String, data: [HeatMapValueModel]) -> HeatMapValueModel? {
+        let values = data.filter{ $0.time == label}
+        guard let value = values.first else { return nil }
+        return value
     }
     
     func setupCellUI(cell: ColorCollectionViewCell, index: Int) -> UICollectionViewCell{
@@ -142,14 +164,19 @@ extension HeatMapTableViewCell: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let row = row else {return}
-        selectedItemDelegate?.selected(row: row, index: indexPath.item)
+        guard let row = row,
+              let labels = timesLabels,
+              let data = heatMapData?.values else {return}
+        let index = indexPath.item
+        let label = labels[index]
+        let dataSelected = findValueWithLabels(label: label, data: data)
+        selectedItemDelegate?.selected(row: row, index: index, data: dataSelected)
     }
 }
 
 extension HeatMapTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let count = timesLableCounts else { return .zero }
+        guard let count = timesLabels?.count else { return .zero }
         let collectionWidth = collectionView.frame.width
         let collectionHeight = collectionView.frame.height
         let squardSize = (collectionWidth / CGFloat(count))
