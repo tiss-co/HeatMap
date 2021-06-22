@@ -55,6 +55,7 @@ public class HeatMapView: UIView {
     var seprateValues: [Double] = []
     var selectedRow: Int?
     var selectedIndex: Int?
+    var selectedData: HeatMapValueModel?
     
     public var isTimeLabelHidden: Bool = true {
         didSet {
@@ -260,9 +261,11 @@ public class HeatMapView: UIView {
             gaugeCollectionView.collectionViewLayout.invalidateLayout()
             labelCollectionView.collectionViewLayout.invalidateLayout()
             calcuteHeightTableView()
-            guard let row = selectedRow, let index = selectedIndex else { return }
-            animateIndicator(row: row, index: index)
-            setTooltip(row: row, index: index)
+            guard let row = selectedRow,
+                  let index = selectedIndex,
+                  let selectedData = selectedData else { return }
+            animateIndicator(row: row, index: index, selectedData: selectedData)
+            setTooltip(row: row, index: index, selectedData: selectedData)
         }
     }
     
@@ -375,7 +378,7 @@ extension HeatMapView: UITableViewDataSource, UITableViewDelegate {
         cell.getData(data: data.data[indexPath.item],
                      colors: data.colors,
                      seprateValues: seprateValues,
-                     timesCount: data.timeLabels.count)
+                     timesLabels: data.timeLabels)
         cell.collectionReloadLayout()
         return cell
     }
@@ -471,19 +474,23 @@ extension HeatMapView: UICollectionViewDelegateFlowLayout {
 
 
 extension HeatMapView: SelectItemDelegate {
-    func selected(row: Int, index: Int) {
+    func selected(row: Int, index: Int, data: HeatMapValueModel?) {
         self.selectedRow = row
         self.selectedIndex = index
-        setTooltip(row: row, index: index)
-        animateIndicator(row: row, index: index)
+        guard let selectedData = data else {
+            dismissTooltip(sender: UITapGestureRecognizer())
+            tableView.reloadData()
+            return
+        }
+        setTooltip(row: row, index: index, selectedData: selectedData)
+        animateIndicator(row: row, index: index, selectedData: selectedData)
         self.tableView.reloadData()
     }
     
-    func animateIndicator(row: Int, index: Int) {
+    func animateIndicator(row: Int, index: Int, selectedData: HeatMapValueModel) {
         guard let data = data else { return }
         if !data.data.indices.contains(row) { return }
-        if !data.data[row].values.indices.contains(index) { return }
-        let value = data.data[row].values[index].value
+        let value = selectedData.value
         let max = seprateValues.max() ?? 0
         let min = seprateValues.min() ?? 0
         let range = max - min
@@ -495,7 +502,7 @@ extension HeatMapView: SelectItemDelegate {
 }
 
 protocol SelectItemDelegate {
-    func selected(row: Int, index: Int)
+    func selected(row: Int,index: Int, data: HeatMapValueModel?)
 }
 
 
@@ -522,38 +529,42 @@ extension HeatMapView {
         tooltipView.isHidden = true
     }
     
-    func setTooltip(row:Int, index: Int){
+    func setTooltip(row:Int, index: Int, selectedData: HeatMapValueModel){
         var stackView : [UIView] = []
         findTooltipPosition(index: index)
         addTimeToTooltip(stackView: &stackView,
                          row: row,
-                         index: index)
+                         index: index,
+                         selectedData: selectedData)
         addEnableDataToTooltip(stackView: &stackView,
                                row: row,
-                               index: index)
+                               index: index,
+                               selectedData: selectedData)
         DispatchQueue.main.async {
             self.presentTooltip(stackView: stackView)
         }
     }
     
-    func addTimeToTooltip(stackView: inout [UIView],row: Int, index: Int){
+    func addTimeToTooltip(stackView: inout [UIView],
+                          row: Int,
+                          index: Int,
+                          selectedData: HeatMapValueModel){
         guard let data = data else { return }
         if !data.data.indices.contains(row) { return }
-        if !data.data[row].values.indices.contains(index) { return }
         let timeLbl = UILabel()
         timeLbl.font = tooltipTitleFont
         timeLbl.textColor = tooltipTextColor
         timeLbl.textAlignment = .left
-        timeLbl.text = data.data[row].date + " " + data.data[row].values[index].time
+        timeLbl.text = data.data[row].date + " " + selectedData.time
         stackView.append(timeLbl)
     }
     
     func addEnableDataToTooltip(stackView: inout [UIView],
                                 row: Int,
-                                index: Int){
+                                index: Int,
+                                selectedData: HeatMapValueModel){
         guard let data = data else { return }
         if !data.data.indices.contains(row) { return }
-        if !data.data[row].values.indices.contains(index) { return }
         let titleLbl = UILabel()
         titleLbl.font = tooltipTitleFont
         titleLbl.textColor = tooltipTextColor
@@ -563,7 +574,7 @@ extension HeatMapView {
         valueLbl.font = tooltipValueFont
         valueLbl.textColor = tooltipTextColor
         valueLbl.textAlignment = .right
-        let value = data.data[row].values[index].value
+        let value = selectedData.value
         valueLbl.text = String(format: "%.2f",value)
         let unitLabel = UILabel()
         unitLabel.font = tooltipUnitFont
