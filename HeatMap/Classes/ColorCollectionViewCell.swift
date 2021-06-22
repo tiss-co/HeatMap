@@ -10,7 +10,7 @@ import UIKit
 class ColorCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var containerView: UIView!
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -20,9 +20,10 @@ class ColorCollectionViewCell: UICollectionViewCell {
         self.containerView.backgroundColor = color
     }
 
-    func getData(colors: [UIColor], values: [Double], currentValue: Double) {
+    func getData(colors: [UIColor], values: [Double], data: HeatMapValueModel) {
+        let value = data.value
         for index in 0..<values.count-1 {
-            if currentValue >= values[index] && currentValue <= values[index+1] {
+            if value >= values[index] && value <= values[index+1] {
                 containerView.backgroundColor = colors[index]
             } else {
                 continue
