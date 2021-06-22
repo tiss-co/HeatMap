@@ -490,12 +490,7 @@ extension HeatMapView: SelectItemDelegate {
         let diff = value - min
         let percentAnimate = CGFloat(diff / range)
         let animateDistance = gaugeCollectionView.frame.width * percentAnimate
-        DispatchQueue.main.async {
-            self.leadingConstraintIndicator.constant = animateDistance - 5
-            UIView.animate(withDuration: 0.6) {
-                self.layoutIfNeeded()
-            }
-        }
+        self.leadingConstraintIndicator.constant = animateDistance - 5
     }
 }
 
