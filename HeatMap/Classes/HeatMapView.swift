@@ -25,12 +25,14 @@ public class HeatMapView: UIView {
     @IBOutlet public weak var indicatorImageView: UIImageView!
     @IBOutlet weak var labelCollectionView: UICollectionView!
     @IBOutlet weak var leadingConstraintIndicator: NSLayoutConstraint! //Defualt = -5
+    @IBOutlet weak var unitLabel: UILabel!
+    
     
     public var data: HeatMapModel? {
         didSet {
             calcuteSeprateValues()
             checkLoading()
-            checkVisibleIndicator()
+            checkVisibleObject()
             dismissTooltip(sender: UITapGestureRecognizer())
         }
     }
@@ -207,13 +209,20 @@ public class HeatMapView: UIView {
         
     public var unitString: String = "" {
         didSet {
-            labelCollectionView.reloadData()
+            if unitString.isEmpty {
+                unitLabel.isHidden = true
+                unitLabel.text = ""
+            } else {
+                unitLabel.isHidden = false
+                unitLabel.text = "(\(unitString))"
+            }
         }
     }
     
     public var segmentFont: UIFont = .systemFont(ofSize: 12) {
         didSet {
             labelCollectionView.reloadData()
+            setupFont()
         }
     }
     
@@ -255,7 +264,8 @@ public class HeatMapView: UIView {
     
     func setup() {
         commonInit()
-        checkVisibleIndicator()
+        setupFont()
+        checkVisibleObject()
         setupLoading()
         checkLoading()
         registerCells()
@@ -268,6 +278,10 @@ public class HeatMapView: UIView {
     func commonInit() {
         HeatMapFrameworkBundle.main.loadNibNamed(HeatMapView.nameOfClass, owner: self, options: nil)
         contentView.fixInView(self)
+    }
+    
+    func setupFont() {
+        unitLabel.font = segmentFont
     }
     
     func setupLoading() {
@@ -285,11 +299,13 @@ public class HeatMapView: UIView {
         }
     }
     
-    func checkVisibleIndicator() {
+    func checkVisibleObject() {
         if data == nil {
             indicatorImageView.isHidden = true
+            unitLabel.isHidden = true
         } else {
             indicatorImageView.isHidden = false
+            unitLabel.isHidden = false
         }
     }
     
@@ -495,8 +511,7 @@ extension HeatMapView: UICollectionViewDataSource, UICollectionViewDelegate {
         let index = indexPath.item
         let value = seprateValues[index]
         
-        cell.getData(seprateValues: value,
-                     unitString: unitString)
+        cell.getData(seprateValues: value)
         cell.setUI(font: segmentFont,
                    color: segmentTextColor,
                    backgroundColor: segmentBackgroundColor)

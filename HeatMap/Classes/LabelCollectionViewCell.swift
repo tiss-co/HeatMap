@@ -21,9 +21,9 @@ class LabelCollectionViewCell: UICollectionViewCell {
         self.label.text = title
     }
     
-    func getData(seprateValues: Double, unitString: String) {
+    func getData(seprateValues: Double) {
         let value = Int(((seprateValues * 10).rounded())/10)
-        self.label.text = value.thousandSeprate() + " " + unitString
+        self.label.text = value.thousandSeprate()
     }
     
     func setUI(font: UIFont, color: UIColor, backgroundColor: UIColor) {
