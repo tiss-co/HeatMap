@@ -30,9 +30,9 @@ public class HeatMapView: UIView {
     
     public var data: HeatMapModel? {
         didSet {
-            calcuteSeprateValues()
             checkLoading()
             checkVisibleObject()
+            calcuteSeprateValues()
             dismissTooltip(sender: UITapGestureRecognizer())
         }
     }
@@ -210,10 +210,8 @@ public class HeatMapView: UIView {
     public var unitString: String = "" {
         didSet {
             if unitString.isEmpty {
-                unitLabel.isHidden = true
                 unitLabel.text = ""
             } else {
-                unitLabel.isHidden = false
                 unitLabel.text = "(\(unitString))"
             }
         }
