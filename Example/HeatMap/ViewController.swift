@@ -258,10 +258,19 @@ class ViewController: UIViewController {
         heatMap.dateFormatString = "yyyy-MM-dd"
         heatMap.showDateFormatString = "E"
         heatMap.dateLabelWidth = 30
-        heatMap.data = data
         heatMap.tooltipBackgroundColor = UIColor.darkGray.withAlphaComponent(0.8)
         heatMap.tooltipTextColor = .white
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.heatMap.data = data
+        }
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
+            self.heatMap.data = nil
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 12) {
+            self.heatMap.data = data
+        }
     }
     
     
