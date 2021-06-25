@@ -14,6 +14,7 @@ public final class HeatMapFrameworkBundle {
 public class HeatMapView: UIView {
     
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var loaderView: LoaderView!
     @IBOutlet weak var tooltipView: UIView!
     @IBOutlet weak var tooltipStackView: UIStackView!
     @IBOutlet weak var tooltipRightConstraint: NSLayoutConstraint!
@@ -28,6 +29,9 @@ public class HeatMapView: UIView {
     public var data: HeatMapModel? {
         didSet {
             calcuteSeprateValues()
+            checkLoading()
+            checkVisibleIndicator()
+            dismissTooltip(sender: UITapGestureRecognizer())
         }
     }
     
@@ -56,6 +60,30 @@ public class HeatMapView: UIView {
     var selectedRow: Int?
     var selectedIndex: Int?
     var selectedData: HeatMapValueModel?
+    
+    public var loadingBaseColor: UIColor = .yellow {
+        didSet {
+            setupLoading()
+        }
+    }
+    
+    public var loadingAnimatedColor: UIColor = .orange {
+        didSet {
+            setupLoading()
+        }
+    }
+    
+    public var loadingBorderColor: UIColor = .darkGray {
+        didSet {
+            setupLoading()
+        }
+    }
+    
+    public var loadingStackItemSpace: CGFloat = 5.0 {
+        didSet {
+            setupLoading()
+        }
+    }
     
     public var isTimeLabelHidden: Bool = true {
         didSet {
@@ -227,6 +255,9 @@ public class HeatMapView: UIView {
     
     func setup() {
         commonInit()
+        checkVisibleIndicator()
+        setupLoading()
+        checkLoading()
         registerCells()
         setupTableView()
         setupCollectionView()
@@ -237,6 +268,29 @@ public class HeatMapView: UIView {
     func commonInit() {
         HeatMapFrameworkBundle.main.loadNibNamed(HeatMapView.nameOfClass, owner: self, options: nil)
         contentView.fixInView(self)
+    }
+    
+    func setupLoading() {
+        loaderView.baseObjectColor = loadingBaseColor
+        loaderView.animatedObjectColor = loadingAnimatedColor
+        loaderView.borderColor = loadingBorderColor
+        loaderView.stackItemSpace = loadingStackItemSpace
+    }
+    
+    func checkLoading() {
+        if data != nil {
+            loaderView.isHidden = true
+        } else {
+            loaderView.isHidden = false
+        }
+    }
+    
+    func checkVisibleIndicator() {
+        if data == nil {
+            indicatorImageView.isHidden = true
+        } else {
+            indicatorImageView.isHidden = false
+        }
     }
     
     func registerCells() {
@@ -250,8 +304,6 @@ public class HeatMapView: UIView {
         tableView.reloadData()
         gaugeCollectionView.reloadData()
         labelCollectionView.reloadData()
-        tableView.beginUpdates()
-        tableView.endUpdates()
         calcuteHeightTableView()
     }
     
@@ -270,9 +322,13 @@ public class HeatMapView: UIView {
     }
     
     func calcuteHeightTableView() {
-        tableView.layoutIfNeeded()
-        let height = tableView.contentSize.height
-        tableViewHeightConstraint.constant = height
+        DispatchQueue.main.async { [self] in
+            tableView.layoutIfNeeded()
+            let dataCount = (data?.data.count ?? 0) + 1
+            let height = CGFloat(dataCount) * caluteHeightTableViewCell()
+            tableViewHeightConstraint.constant = height
+            contentView.layoutIfNeeded()
+        }
     }
     
     func setupTableView() {
@@ -293,7 +349,10 @@ public class HeatMapView: UIView {
     }
     
     func calcuteSeprateValues() {
-        guard let data = data?.data else { return }
+        guard let data = data?.data else {
+            refreshUI()
+            return
+        }
         var values: [Double] = []
         for item in data {
             values.append(contentsOf: item.values.map{$0.value})

@@ -17,6 +17,7 @@
                 <outlet property="indicatorImageView" destination="qZE-b2-ZIl" id="1ED-58-fXT"/>
                 <outlet property="labelCollectionView" destination="Ah9-yD-WfA" id="Qep-zZ-vUb"/>
                 <outlet property="leadingConstraintIndicator" destination="s09-Pz-wc9" id="IpP-OB-57j"/>
+                <outlet property="loaderView" destination="iad-Ll-QfQ" id="N5d-65-RKb"/>
                 <outlet property="tableView" destination="T9Q-Zt-kts" id="qvg-bG-B9y"/>
                 <outlet property="tableViewHeightConstraint" destination="PmT-rY-4fB" id="qgu-eq-0OT"/>
                 <outlet property="tooltipRightConstraint" destination="7vE-XU-504" id="mga-aj-O4R"/>
@@ -27,18 +28,18 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="TAW-94-oMu">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="512"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="243"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="T9Q-Zt-kts">
-                    <rect key="frame" x="0.0" y="15" width="414" height="435"/>
+                    <rect key="frame" x="0.0" y="15" width="414" height="166"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" priority="999" constant="300" id="PmT-rY-4fB"/>
+                        <constraint firstAttribute="height" priority="999" constant="150" id="PmT-rY-4fB"/>
                     </constraints>
                 </tableView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="m8c-Rn-7uG">
-                    <rect key="frame" x="50" y="457" width="314" height="10"/>
+                    <rect key="frame" x="50" y="188" width="314" height="10"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="B0C-dp-u9k"/>
@@ -51,7 +52,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ah9-yD-WfA">
-                    <rect key="frame" x="25" y="477" width="364" height="20"/>
+                    <rect key="frame" x="25" y="208" width="364" height="20"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="CdD-85-A65"/>
@@ -64,7 +65,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qZE-b2-ZIl">
-                    <rect key="frame" x="45" y="467" width="10" height="10"/>
+                    <rect key="frame" x="45" y="198" width="10" height="10"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="khL-aR-Y0v"/>
                         <constraint firstAttribute="width" constant="10" id="rqy-51-RV6"/>
@@ -87,10 +88,19 @@
                         <constraint firstItem="ges-Qx-eX8" firstAttribute="leading" secondItem="RDT-t3-tUF" secondAttribute="leading" constant="5" id="u0N-YW-YjI"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iad-Ll-QfQ" customClass="LoaderView" customModule="HeatMap" customModuleProvider="target">
+                    <rect key="frame" x="147" y="88" width="120" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="3Jx-KC-Chg"/>
+                        <constraint firstAttribute="width" constant="120" id="Qgc-Xm-koP"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="d5e-qF-nJJ"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="iad-Ll-QfQ" firstAttribute="centerY" secondItem="T9Q-Zt-kts" secondAttribute="centerY" id="2Y0-Fr-2d9"/>
                 <constraint firstItem="RDT-t3-tUF" firstAttribute="top" secondItem="TAW-94-oMu" secondAttribute="top" constant="10" id="5fJ-YS-ZHF"/>
                 <constraint firstItem="d5e-qF-nJJ" firstAttribute="trailing" secondItem="RDT-t3-tUF" secondAttribute="trailing" constant="10" id="7vE-XU-504"/>
                 <constraint firstItem="T9Q-Zt-kts" firstAttribute="trailing" secondItem="d5e-qF-nJJ" secondAttribute="trailing" id="Ady-Xr-av2"/>
@@ -104,10 +114,11 @@
                 <constraint firstItem="T9Q-Zt-kts" firstAttribute="leading" secondItem="d5e-qF-nJJ" secondAttribute="leading" id="gQk-CY-hco"/>
                 <constraint firstItem="qZE-b2-ZIl" firstAttribute="top" secondItem="m8c-Rn-7uG" secondAttribute="bottom" id="qFj-Co-EQD"/>
                 <constraint firstItem="qZE-b2-ZIl" firstAttribute="leading" secondItem="m8c-Rn-7uG" secondAttribute="leading" constant="-5" id="s09-Pz-wc9"/>
+                <constraint firstItem="iad-Ll-QfQ" firstAttribute="centerX" secondItem="T9Q-Zt-kts" secondAttribute="centerX" id="ubz-nX-ahe"/>
                 <constraint firstItem="m8c-Rn-7uG" firstAttribute="leading" secondItem="d5e-qF-nJJ" secondAttribute="leading" constant="50" id="w9u-U6-Qk1"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="142.02898550724638" y="-36.830357142857139"/>
+            <point key="canvasLocation" x="142.02898550724638" y="53.236607142857139"/>
         </view>
     </objects>
     <resources>

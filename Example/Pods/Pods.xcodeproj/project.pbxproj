@@ -13,6 +13,8 @@
 		2309B2C40C140B3D39C9EA749E738057 /* Pods-HeatMap_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EF3B30B3EBEC08D539C7711FF1CDEB67 /* Pods-HeatMap_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27578ED5421A88A2532032D809A28730 /* HeatMapTableViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = CF096A774B384C65AAA164136E4F887C /* HeatMapTableViewCell.xib */; };
 		292B11A72668D13B007956D0 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292B11A62668D13B007956D0 /* ImageHelper.swift */; };
+		292C9C432685BDA20000295D /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292C9C412685BDA20000295D /* LoaderView.swift */; };
+		292C9C442685BDA20000295D /* LoaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 292C9C422685BDA20000295D /* LoaderView.xib */; };
 		30646721446E42E282C21495C9E3F760 /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF3DBFBBD33A0ECC5BFD6590F5226CF /* LabelCollectionViewCell.swift */; };
 		3C045FBF91DC37044AE678716D836F7C /* ColorCollectionViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 61A4B7F74FDDB312A3DCA80E2F12A5AD /* ColorCollectionViewCell.xib */; };
 		4551F9C378EDC5B791285038341783AE /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634A736C050E200C82469B06E562DB8 /* ColorCollectionViewCell.swift */; };
@@ -69,6 +71,8 @@
 		232035DEF24C8EACF0AF265812CED8D9 /* TimeTableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TimeTableViewCell.xib; path = HeatMap/Classes/TimeTableViewCell.xib; sourceTree = "<group>"; };
 		23617451C502E5D42B8C6FADC15D7DA7 /* Pods-HeatMap_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HeatMap_Tests-dummy.m"; sourceTree = "<group>"; };
 		292B11A62668D13B007956D0 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageHelper.swift; path = HeatMap/Classes/ImageHelper.swift; sourceTree = "<group>"; };
+		292C9C412685BDA20000295D /* LoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
+		292C9C422685BDA20000295D /* LoaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoaderView.xib; sourceTree = "<group>"; };
 		2F70C325A2B9EA2268B293D91FB82A53 /* Pods-HeatMap_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HeatMap_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		30788D4CBE57B3EFE4697F22F5371B01 /* Pods-HeatMap_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HeatMap_Example-umbrella.h"; sourceTree = "<group>"; };
 		3082EA88D5208D59896AAA08186FAFC2 /* HeatMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HeatMap.debug.xcconfig; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 		965C72C67902880729096FCBC63C9B98 /* HeatMap */ = {
 			isa = PBXGroup;
 			children = (
+				292C9C412685BDA20000295D /* LoaderView.swift */,
+				292C9C422685BDA20000295D /* LoaderView.xib */,
 				3634A736C050E200C82469B06E562DB8 /* ColorCollectionViewCell.swift */,
 				61A4B7F74FDDB312A3DCA80E2F12A5AD /* ColorCollectionViewCell.xib */,
 				4AA0FCFEE19203BBCBC3248AE8984A44 /* Extension.swift */,
@@ -441,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AE43B3FD54857609485540BC2C46B2B /* HeatMap.bundle in Resources */,
+				292C9C442685BDA20000295D /* LoaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +476,7 @@
 			files = (
 				4551F9C378EDC5B791285038341783AE /* ColorCollectionViewCell.swift in Sources */,
 				3C045FBF91DC37044AE678716D836F7C /* ColorCollectionViewCell.xib in Sources */,
+				292C9C432685BDA20000295D /* LoaderView.swift in Sources */,
 				9B45850A0E66F8FCAAED9CAA41953856 /* Extension.swift in Sources */,
 				4C18A78E8D6203F1D9EAF1001E00D5DF /* HeatMap-dummy.m in Sources */,
 				7C981F8542DB87AEF642A31D2CD358EE /* HeatMapModel.swift in Sources */,
@@ -663,7 +671,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.0.7;
+				MARKETING_VERSION = 0.0.8;
 				MODULEMAP_FILE = "Target Support Files/HeatMap/HeatMap.modulemap";
 				PRODUCT_MODULE_NAME = HeatMap;
 				PRODUCT_NAME = HeatMap;
@@ -726,7 +734,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.0.7;
+				MARKETING_VERSION = 0.0.8;
 				MODULEMAP_FILE = "Target Support Files/HeatMap/HeatMap.modulemap";
 				PRODUCT_MODULE_NAME = HeatMap;
 				PRODUCT_NAME = HeatMap;

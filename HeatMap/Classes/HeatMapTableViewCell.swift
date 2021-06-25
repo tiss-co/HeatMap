@@ -110,6 +110,9 @@ class HeatMapTableViewCell: UITableViewCell {
 
 extension HeatMapTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if heatMapData == nil {
+            return 0
+        }
         return timesLabels?.count ?? 0
     }
     
