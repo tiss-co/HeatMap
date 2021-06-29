@@ -15,6 +15,7 @@ public class HeatMapView: UIView {
     
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var loaderView: LoaderView!
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var tooltipView: UIView!
     @IBOutlet weak var tooltipStackView: UIStackView!
     @IBOutlet weak var tooltipRightConstraint: NSLayoutConstraint!
@@ -66,6 +67,22 @@ public class HeatMapView: UIView {
     public var loadingBaseColor: UIColor = .yellow {
         didSet {
             setupLoading()
+        }
+    }
+    
+    public var loadingMessage: String = "Loading..."
+    
+    public var noDataMessage: String = "No Data Available"
+    
+    public var errorFont: UIFont = UIFont.systemFont(ofSize: 12) {
+        didSet {
+            setupUI()
+        }
+    }
+    
+    public var errorTextColor: UIColor = .black {
+        didSet {
+            setupUI()
         }
     }
     
@@ -263,6 +280,7 @@ public class HeatMapView: UIView {
     func setup() {
         commonInit()
         setupFont()
+        setupUI()
         checkVisibleObject()
         setupLoading()
         checkLoading()
@@ -282,6 +300,11 @@ public class HeatMapView: UIView {
         unitLabel.font = segmentFont
     }
     
+    func setupUI() {
+        errorLabel.font = errorFont
+        errorLabel.textColor = errorTextColor
+    }
+    
     func setupLoading() {
         loaderView.baseObjectColor = loadingBaseColor
         loaderView.animatedObjectColor = loadingAnimatedColor
@@ -298,13 +321,35 @@ public class HeatMapView: UIView {
     }
     
     func checkVisibleObject() {
-        if data == nil {
-            indicatorImageView.isHidden = true
-            unitLabel.isHidden = true
-        } else {
-            indicatorImageView.isHidden = false
-            unitLabel.isHidden = false
+        guard let data = data else {
+            objectVisible(isHidden: true)
+            showError(message: loadingMessage)
+            return
         }
+        if data.data.isEmpty {
+            objectVisible(isHidden: true)
+            showError(message: noDataMessage)
+        } else {
+            objectVisible(isHidden: false)
+            hiddenError()
+        }
+    }
+    
+    func objectVisible(isHidden: Bool) {
+        indicatorImageView.isHidden = isHidden
+        gaugeCollectionView.isHidden = isHidden
+        labelCollectionView.isHidden = isHidden
+        unitLabel.isHidden = isHidden
+    }
+    
+    func showError(message: String) {
+        errorLabel.isHidden = false
+        errorLabel.text = message
+    }
+    
+    func hiddenError() {
+        errorLabel.text = ""
+        errorLabel.isHidden = true
     }
     
     func registerCells() {
