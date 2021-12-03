@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HeatMap'
-  s.version          = '0.0.12'
+  s.version          = '0.0.13'
   s.summary          = 'HeatMap.'
 
 # This description is used to generate tags and improve search results.
@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
   s.swift_versions = '4.0'
-  s.homepage         = 'https://github.com/boof-tech/HeatMap'
+  s.homepage         = 'https://github.com/tiss-co/HeatMap'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Boof.tech' => 'ios@boof.tech' }
-  s.source           = { :git => 'https://github.com/boof-tech/HeatMap.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/tiss-co/HeatMap.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
