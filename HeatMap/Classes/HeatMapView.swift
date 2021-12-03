@@ -31,7 +31,6 @@ public class HeatMapView: UIView {
     
     public var data: HeatMapModel? {
         didSet {
-            checkLoading()
             checkVisibleObject()
             calcuteSeprateValues()
             dismissTooltip(sender: UITapGestureRecognizer())
@@ -64,11 +63,6 @@ public class HeatMapView: UIView {
     var selectedIndex: Int?
     var selectedData: HeatMapValueModel?
     
-    public var loadingBaseColor: UIColor = .yellow {
-        didSet {
-            setupLoading()
-        }
-    }
     
     public var loadingMessage: String = "Loading..."
     
@@ -83,24 +77,6 @@ public class HeatMapView: UIView {
     public var errorTextColor: UIColor = .black {
         didSet {
             setupUI()
-        }
-    }
-    
-    public var loadingAnimatedColor: UIColor = .orange {
-        didSet {
-            setupLoading()
-        }
-    }
-    
-    public var loadingBorderColor: UIColor = .darkGray {
-        didSet {
-            setupLoading()
-        }
-    }
-    
-    public var loadingStackItemSpace: CGFloat = 5.0 {
-        didSet {
-            setupLoading()
         }
     }
     
@@ -282,8 +258,6 @@ public class HeatMapView: UIView {
         setupFont()
         setupUI()
         checkVisibleObject()
-        setupLoading()
-        checkLoading()
         registerCells()
         setupTableView()
         setupCollectionView()
@@ -303,21 +277,6 @@ public class HeatMapView: UIView {
     func setupUI() {
         errorLabel.font = errorFont
         errorLabel.textColor = errorTextColor
-    }
-    
-    func setupLoading() {
-        loaderView.baseObjectColor = loadingBaseColor
-        loaderView.animatedObjectColor = loadingAnimatedColor
-        loaderView.borderColor = loadingBorderColor
-        loaderView.stackItemSpace = loadingStackItemSpace
-    }
-    
-    func checkLoading() {
-        if data != nil {
-            loaderView.isHidden = true
-        } else {
-            loaderView.isHidden = false
-        }
     }
     
     func checkVisibleObject() {

@@ -58,7 +58,6 @@ public class LoaderView: UIView {
     func setup() {
         commonInit()
         setupUI()
-        animating()
     }
     
     func commonInit() {
@@ -74,18 +73,5 @@ public class LoaderView: UIView {
             item.layer.borderColor = borderColor.cgColor
         }
         ObjectsView.first?.backgroundColor = animatedObjectColor
-    }
-    
-    func animating() {
-        UIView.animate(withDuration: 0.75, delay: 0, options: [], animations: { [self] in
-            stackView.addArrangedSubview(stackView.subviews[index])
-            if index == 2 {
-                index = 0
-            } else {
-                index += 1
-            }
-        }, completion: {_ in
-            self.animating()
-        })
     }
 }
