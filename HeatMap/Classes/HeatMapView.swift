@@ -57,6 +57,8 @@ public class HeatMapView: UIView {
     public var tooltipTitleFont: UIFont = UIFont.systemFont(ofSize: 13)
     public var tooltipValueFont: UIFont = UIFont.systemFont(ofSize: 11)
     public var tooltipUnitFont: UIFont = UIFont.systemFont(ofSize: 10)
+    public var enterDateFormatTooltip: String = "yyyy-mm-dd"
+    public var exportDateFormatTooltip: String = "MMM d, yyyy"
     
     var seprateValues: [Double] = []
     var selectedRow: Int?
@@ -322,31 +324,29 @@ public class HeatMapView: UIView {
         tableView.reloadData()
         gaugeCollectionView.reloadData()
         labelCollectionView.reloadData()
+        DispatchQueue.main.async { [self] in
+            gaugeCollectionView.collectionViewLayout.invalidateLayout()
+            labelCollectionView.collectionViewLayout.invalidateLayout()
+        }
+        refreshHeatMapLayout()
         calcuteHeightTableView()
     }
     
-    public func refreshHeatMapLayout() {
-        DispatchQueue.main.async { [self] in
-            tableView.reloadData()
-            gaugeCollectionView.collectionViewLayout.invalidateLayout()
-            labelCollectionView.collectionViewLayout.invalidateLayout()
-            calcuteHeightTableView()
-            guard let row = selectedRow,
-                  let index = selectedIndex,
-                  let selectedData = selectedData else { return }
-            animateIndicator(row: row, index: index, selectedData: selectedData)
-            setTooltip(row: row, index: index, selectedData: selectedData)
-        }
+    func refreshHeatMapLayout() {
+        guard let row = selectedRow,
+              let index = selectedIndex,
+              let selectedData = selectedData else { return }
+        animateIndicator(row: row, index: index, selectedData: selectedData)
+        setTooltip(row: row, index: index, selectedData: selectedData)
     }
     
     func calcuteHeightTableView() {
-        DispatchQueue.main.async { [self] in
-            tableView.layoutIfNeeded()
-            let dataCount = (data?.data.count ?? 0) + 1
-            let height = CGFloat(dataCount) * caluteHeightTableViewCell()
-            tableViewHeightConstraint.constant = height
-            contentView.layoutIfNeeded()
-        }
+        let dataCount = (data?.data.count ?? 0) + 1
+        let height = CGFloat(dataCount) * caluteHeightTableViewCell()
+        tableViewHeightConstraint.constant = height
+        print("Heat Map: \(height)")
+        tableView.layoutIfNeeded()
+        contentView.layoutIfNeeded()
     }
     
     func setupTableView() {
@@ -631,8 +631,18 @@ extension HeatMapView {
         timeLbl.font = tooltipTitleFont
         timeLbl.textColor = tooltipTextColor
         timeLbl.textAlignment = .left
-        timeLbl.text = data.data[row].date + " " + selectedData.time
+        let dateString = formatedDate(date: data.data[row].date)
+        timeLbl.text = dateString + " " + selectedData.time
         stackView.append(timeLbl)
+    }
+    
+    func formatedDate(date: String) -> String {
+        let enterDateFormat = DateFormatter()
+        enterDateFormat.dateFormat = enterDateFormatTooltip
+        let exportDateFormat = DateFormatter()
+        exportDateFormat.dateFormat = exportDateFormatTooltip
+        guard let enterDate = enterDateFormat.date(from: date) else { return "" }
+        return exportDateFormat.string(from: enterDate)
     }
     
     func addEnableDataToTooltip(stackView: inout [UIView],
