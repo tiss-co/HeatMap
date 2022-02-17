@@ -329,7 +329,6 @@ public class HeatMapView: UIView {
             labelCollectionView.collectionViewLayout.invalidateLayout()
         }
         refreshHeatMapLayout()
-        calcuteHeightTableView()
     }
     
     func refreshHeatMapLayout() {
@@ -340,13 +339,16 @@ public class HeatMapView: UIView {
         setTooltip(row: row, index: index, selectedData: selectedData)
     }
     
-    func calcuteHeightTableView() {
+    public func calcuteHeightTableView(complection: @escaping (_ isFinished: Bool) -> Void) {
         let dataCount = (data?.data.count ?? 0) + 1
-        let height = CGFloat(dataCount) * caluteHeightTableViewCell()
-        tableViewHeightConstraint.constant = height
-        print("Heat Map: \(height)")
-        tableView.layoutIfNeeded()
-        contentView.layoutIfNeeded()
+        caluteHeightTableViewCellInMain { cellDimension in
+            self.tableView.layoutIfNeeded()
+            self.contentView.layoutIfNeeded()
+            let height = CGFloat(dataCount) * cellDimension
+            self.tableViewHeightConstraint.constant = height
+            print("Heat Map: \(height)")
+            complection(true)
+        }
     }
     
     func setupTableView() {
@@ -476,6 +478,15 @@ extension HeatMapView: UITableViewDataSource, UITableViewDelegate {
         let collectionWidth = cellWidth - dateLabelWidth
         let squardCollectionCellSize = collectionWidth / CGFloat(data?.timeLabels.count ?? 1)
         return squardCollectionCellSize
+    }
+    
+    func caluteHeightTableViewCellInMain(complection: @escaping (_ cellDimension: CGFloat) -> Void) {
+        DispatchQueue.main.async { [self] in
+            let cellWidth = tableView.frame.width
+            let collectionWidth = cellWidth - dateLabelWidth
+            let squardCollectionCellSize = collectionWidth / CGFloat(data?.timeLabels.count ?? 1)
+            complection(squardCollectionCellSize)
+        }
     }
 }
 

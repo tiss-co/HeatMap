@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HeatMap'
-  s.version          = '0.0.14'
+  s.version          = '0.1.0'
   s.summary          = 'HeatMap.'
 
 # This description is used to generate tags and improve search results.
