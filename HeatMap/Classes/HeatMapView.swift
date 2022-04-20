@@ -562,13 +562,16 @@ extension HeatMapView: UICollectionViewDelegateFlowLayout {
 
 extension HeatMapView: SelectItemDelegate {
     func selected(row: Int, index: Int, data: HeatMapValueModel?) {
-        self.selectedRow = row
-        self.selectedIndex = index
         guard let selectedData = data else {
+            self.selectedRow = nil
+            self.selectedIndex = nil
+            self.leadingConstraintIndicator.constant = -5
             dismissTooltip(sender: UITapGestureRecognizer())
             tableView.reloadData()
             return
         }
+        self.selectedRow = row
+        self.selectedIndex = index
         setTooltip(row: row, index: index, selectedData: selectedData)
         animateIndicator(row: row, index: index, selectedData: selectedData)
         self.tableView.reloadData()
@@ -578,13 +581,24 @@ extension HeatMapView: SelectItemDelegate {
         guard let data = data else { return }
         if !data.data.indices.contains(row) { return }
         let value = selectedData.value
-        let max = seprateValues.max() ?? 0
-        let min = seprateValues.min() ?? 0
+        var max = 0.0
+        var min = 0.0
+        var located = 0.0
+        for (index, item) in seprateValues.enumerated() {
+            if value > item || (value == seprateValues.min() && index == 0) {
+                located = Double(index)
+                min = item
+                max = (index + 1) == seprateValues.count ? seprateValues.max()! : seprateValues[index + 1]
+            }
+        }
         let range = max - min
         let diff = value - min
+        let seprateCount = CGFloat(seprateValues.count - 1)
         let percentAnimate = CGFloat(diff / range)
-        let animateDistance = gaugeCollectionView.frame.width * percentAnimate
-        self.leadingConstraintIndicator.constant = animateDistance - 5
+        let percentLocated = CGFloat(located / seprateCount)
+        let animateDistance = gaugeCollectionView.frame.width * percentLocated
+        let animatePerItem = (gaugeCollectionView.frame.width / CGFloat(seprateCount)) * percentAnimate
+        self.leadingConstraintIndicator.constant = animateDistance + animatePerItem - 5
     }
 }
 
