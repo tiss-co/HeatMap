@@ -25,6 +25,7 @@ class ColorCollectionViewCell: UICollectionViewCell {
         for index in 0..<values.count-1 {
             if value >= values[index] && value <= values[index+1] {
                 containerView.backgroundColor = colors[index]
+                return
             } else {
                 continue
             }
