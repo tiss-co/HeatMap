@@ -92,7 +92,8 @@ class HeatMapTableViewCell: UITableViewCell {
                itemBorderColor: UIColor,
                itemBorderWidth: CGFloat,
                itemBorderColorSelected: UIColor,
-               itemSelectedBorderWidth: CGFloat) {
+               itemSelectedBorderWidth: CGFloat,
+               backgroundColor: UIColor) {
         self.dateLabel.isHidden = isDateHidden
         self.dateLabel.font = dateFont
         self.dateLabel.textColor = dateTextColor
@@ -104,6 +105,8 @@ class HeatMapTableViewCell: UITableViewCell {
         self.itemBorderWidth = itemBorderWidth
         self.itemBorderColorSelected = itemBorderColorSelected
         self.itemSelectedBorderWidth = itemSelectedBorderWidth
+        self.collectionView.backgroundColor = backgroundColor
+        self.contentView.backgroundColor = backgroundColor
         collectionView.reloadData()
     }
 }

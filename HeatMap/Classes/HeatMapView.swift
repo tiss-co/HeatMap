@@ -13,7 +13,7 @@ public final class HeatMapFrameworkBundle {
 
 public class HeatMapView: UIView {
     
-    @IBOutlet var contentView: UIView!
+    @IBOutlet public var contentView: UIView!
     @IBOutlet weak var loaderView: LoaderView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var tooltipView: UIView!
@@ -48,6 +48,12 @@ public class HeatMapView: UIView {
     public var tooltipWidth: CGFloat = 140 {
         didSet {
             tootipWidthConstraint.constant = tooltipWidth
+        }
+    }
+    
+    public var tableViewBackgroundColor: UIColor = .systemGroupedBackground {
+        didSet {
+            tableView.backgroundColor = tableViewBackgroundColor
         }
     }
     
@@ -238,7 +244,7 @@ public class HeatMapView: UIView {
     }
     
     
-    public var indicatorImage: UIImage? = ImageHelper.image("up-triangular-arrow-H") {
+    public var indicatorImage: UIImage? = ImageHelper.image("up-triangular-arrow-H")?.withTintColor(.label) {
         didSet {
             indicatorImageView.image = indicatorImage
         }
@@ -453,7 +459,8 @@ extension HeatMapView: UITableViewDataSource, UITableViewDelegate {
                    itemBorderColor: itemBorderColor,
                    itemBorderWidth: itemBorderWidth,
                    itemBorderColorSelected: itemBorderSelectedColor,
-                   itemSelectedBorderWidth: itemSelectedBorderWidth)
+                   itemSelectedBorderWidth: itemSelectedBorderWidth,
+                   backgroundColor: tableViewBackgroundColor)
         cell.getData(data: data.data[indexPath.item],
                      colors: data.colors,
                      seprateValues: seprateValues,
